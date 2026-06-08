@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rok Gutnik · Blackbird Risk Intelligence</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=DM+Sans:wght@300;400&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{--gold:#B8963E;--ink:#06060E;--cream:#F2EEE6;}
+html,body{min-height:100vh;background:var(--ink);font-family:'DM Sans',sans-serif;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px 24px;gap:28px;}
+#aurora{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden;}
+.orb{position:absolute;border-radius:50%;filter:blur(90px);}
+.orb1{width:700px;height:700px;top:-200px;right:-150px;background:radial-gradient(circle,rgba(46,109,164,.45) 0%,transparent 70%);animation:o1 20s ease-in-out infinite;}
+.orb2{width:500px;height:500px;bottom:-150px;left:-100px;background:radial-gradient(circle,rgba(46,109,164,.35) 0%,transparent 70%);animation:o2 16s ease-in-out infinite;}
+.orb3{width:380px;height:380px;top:40%;left:30%;background:radial-gradient(circle,rgba(184,150,62,.18) 0%,transparent 70%);animation:o3 24s ease-in-out infinite;}
+@keyframes o1{0%,100%{transform:translate(0,0);}50%{transform:translate(-40px,30px);}}
+@keyframes o2{0%,100%{transform:translate(0,0);}50%{transform:translate(30px,-40px);}}
+@keyframes o3{0%,100%{transform:translate(0,0);}50%{transform:translate(20px,20px);}}
+.card-wrap{position:relative;z-index:2;width:440px;height:270px;cursor:pointer;}
+.face{position:absolute;inset:0;border-radius:5px;overflow:hidden;background:#06060E;border:1px solid rgba(184,150,62,.2);transition:opacity .4s ease,transform .4s ease;}
+.face-front{opacity:1;transform:scale(1);pointer-events:auto;z-index:2;}
+.face-back{opacity:0;transform:scale(.97);pointer-events:none;z-index:1;}
+.card-wrap.flipped .face-front{opacity:0;transform:scale(.97);pointer-events:none;}
+.card-wrap.flipped .face-back{opacity:1;transform:scale(1);pointer-events:auto;}
+.face-front::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 140% 100% at 90% 10%,rgba(46,109,164,.32) 0%,transparent 55%),radial-gradient(ellipse 80% 80% at 0% 100%,rgba(184,150,62,.12) 0%,transparent 50%);pointer-events:none;}
+.face-front::after{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,rgba(184,150,62,.7),transparent);}
+.fc{position:relative;z-index:1;padding:28px 32px;height:100%;display:flex;flex-direction:column;justify-content:space-between;}
+.ft{display:flex;align-items:center;justify-content:space-between;}
+.fbrand{display:flex;align-items:center;gap:10px;}
+.fm{font-family:'Cormorant Garamond',serif;font-size:28px;color:var(--gold);font-weight:300;line-height:1;}
+.fvl{width:1px;height:20px;background:rgba(184,150,62,.3);}
+.fw{font-size:10px;letter-spacing:.12em;color:rgba(184,150,62,.7);text-transform:uppercase;line-height:1.6;font-weight:300;}
+.floc{font-size:10px;color:rgba(242,238,230,.3);letter-spacing:.06em;font-weight:300;}
+.fn{font-family:'Cormorant Garamond',serif;font-size:34px;font-weight:300;color:var(--cream);line-height:1.1;margin-bottom:5px;}
+.fn em{color:var(--gold);font-style:italic;}
+.ftitle{font-size:11px;color:rgba(184,150,62,.8);letter-spacing:.06em;font-weight:300;margin-bottom:2px;}
+.fcomp{font-size:10px;color:rgba(242,238,230,.35);letter-spacing:.04em;font-weight:300;}
+.fcontact{display:flex;flex-direction:column;gap:5px;}
+.frow{display:flex;align-items:center;gap:7px;}
+.ficon{font-size:11px;color:rgba(184,150,62,.55);min-width:14px;}
+.fval{font-size:11px;color:rgba(242,238,230,.8);font-weight:300;}
+.fhint{position:absolute;bottom:11px;right:14px;font-size:9px;letter-spacing:.10em;color:rgba(242,238,230,.18);font-weight:300;}
+.face-back{background:#F5F2EC;}
+.bc{height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;padding:14px;}
+.bc img{display:block;width:100%;max-width:220px;height:auto;image-rendering:pixelated;}
+.bfoot{font-size:9px;letter-spacing:.14em;color:rgba(10,10,20,.35);text-transform:uppercase;text-align:center;font-weight:300;}
+.save-btn{position:relative;z-index:2;display:flex;align-items:center;gap:10px;padding:14px 36px;border:1px solid rgba(184,150,62,.4);border-radius:3px;background:rgba(184,150,62,.07);color:rgba(184,150,62,.85);font-family:'DM Sans',sans-serif;font-size:11px;letter-spacing:.16em;text-transform:uppercase;font-weight:300;cursor:pointer;transition:background .2s;text-decoration:none;}
+.save-btn:hover{background:rgba(184,150,62,.14);}
+.footer{position:relative;z-index:2;font-size:9px;letter-spacing:.16em;color:rgba(242,238,230,.18);text-transform:uppercase;text-align:center;font-weight:300;}
+@media(max-width:500px){.card-wrap{width:calc(100vw - 48px);height:auto;min-height:230px;}.fn{font-size:26px;}.fc{padding:22px 24px;}}
+</style>
+</head>
+<body>
+<div id="aurora"><div class="orb orb1"></div><div class="orb orb2"></div><div class="orb orb3"></div></div>
+<div class="card-wrap" onclick="this.classList.toggle('flipped')">
+  <div class="face face-front">
+    <div class="fc">
+      <div class="ft">
+        <div class="fbrand"><div class="fm">∧</div><div class="fvl"></div><div class="fw">Blackbird<br>Risk Intelligence</div></div>
+        <div class="floc">Luxembourg · Europe</div>
+      </div>
+      <div>
+        <div class="fn">Rok <em>Gutnik</em></div>
+        <div class="ftitle">Co-Founder & Chief Financial Officer</div>
+        <div class="fcomp">Blackbird Risk Intelligence</div>
+      </div>
+      <div class="fcontact">
+        <div class="frow"><span class="ficon">✉</span><span class="fval">rok@blackbirdrisk.lu</span></div>
+        <div class="frow"><span class="ficon">✆</span><span class="fval">+352 621 675 069</span></div>
+        <div class="frow"><span class="ficon">⌘</span><span class="fval">blackbirdrisk.lu</span></div>
+      </div>
+    </div>
+    <div class="fhint">Tap for QR ↓</div>
+  </div>
+  <div class="face face-back">
+    <div class="bc">
+      <img src="data:image/png;base64,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" alt="QR Code">
+      <div class="bfoot">Scan to save contact · Rok Gutnik</div>
+    </div>
+  </div>
+</div>
+<a class="save-btn" href="#" onclick="downloadVCard(event)">
+  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 15V3m0 12l-4-4m4 4l4-4M2 17l.621 2.485A2 2 0 004.561 21h14.878a2 2 0 001.94-1.515L22 17"/></svg>
+  Save Contact
+</a>
+<div class="footer">blackbirdrisk.lu</div>
+<script>
+var vcard="BEGIN:VCARD\nVERSION:3.0\nFN:Rok Gutnik\nN:Gutnik;Rok\nTITLE:Co-Founder & Chief Financial Officer\nORG:Blackbird Risk Intelligence\nEMAIL;TYPE=WORK:rok@blackbirdrisk.lu\nTEL;TYPE=CELL:+352621675069\nURL:https://blackbirdrisk.lu\nADR;TYPE=WORK:;;Luxembourg City;;;;Luxembourg\nEND:VCARD";
+function downloadVCard(e){e.preventDefault();var b=new Blob([vcard],{type:'text/vcard'});var u=URL.createObjectURL(b);var a=document.createElement('a');a.href=u;a.download='Rok_Gutnik.vcf';a.click();URL.revokeObjectURL(u);}
+</script>
+</body>
+</html>
