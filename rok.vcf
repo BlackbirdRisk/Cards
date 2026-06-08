@@ -1,0 +1,10 @@
+BEGIN:VCARD
+VERSION:3.0
+FN:Rok Gutnik
+N:Gutnik;Rok
+TITLE:Co-Founder & Chief Financial Officer
+ORG:Blackbird Risk Intelligence
+EMAIL;TYPE=WORK:rok@blackbirdrisk.lu
+URL:https://blackbirdrisk.lu
+ADR;TYPE=WORK:;;Luxembourg City;;;;Luxembourg
+END:VCARD
